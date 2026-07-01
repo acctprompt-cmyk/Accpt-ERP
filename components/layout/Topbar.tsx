@@ -2,18 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import { supabase } from "../../lib/supabaseClient";
-
-const pageTitles: Record<string, string> = {
-  "/dashboard": "Dashboard",
-  "/petty-cash": "Petty Cash",
-  "/company": "Companies",
-  "/users": "Users",
-  "/settings": "Settings",
-};
+import { APP_MENU } from "../../constants/menu";
 
 export default function Topbar() {
   const pathname = usePathname();
-  const title = pageTitles[pathname] ?? "ACCPT ERP";
+  const currentMenu = APP_MENU.find((menu) => menu.href === pathname);
+  const title = currentMenu?.name ?? "ACCPT ERP";
 
   async function logout() {
     await supabase.auth.signOut();

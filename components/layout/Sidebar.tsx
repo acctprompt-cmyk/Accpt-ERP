@@ -1,14 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-
-const menus = [
-  { name: "Dashboard", href: "/dashboard" },
-  { name: "Petty Cash", href: "/petty-cash" },
-  { name: "Companies", href: "/company" },
-  { name: "Users", href: "/users" },
-  { name: "Settings", href: "/settings" },
-];
+import { APP_MENU } from "../../constants/menu";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -18,7 +11,7 @@ export default function Sidebar() {
       <h1 className="text-2xl font-bold mb-8">ACCPT ERP</h1>
 
       <nav className="space-y-2">
-        {menus.map((menu) => {
+        {APP_MENU.map((menu) => {
           const active = pathname === menu.href;
 
           return (
